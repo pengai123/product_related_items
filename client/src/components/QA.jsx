@@ -4,8 +4,6 @@ import Typography from '@material-ui/core/Typography';
 
 function QA(props) {
 
-
-	console.log('props:', props.relatedItems)
 	return (
 		<div>
 			<Typography variant="subtitle1" color="textPrimary" component="p">

@@ -77,9 +77,6 @@ function App() {
 						})
 				}
 			})
-
-		
-
 	}
 
 	useEffect(() => {

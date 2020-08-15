@@ -6,7 +6,6 @@ import RelatedItems from './components/RelatedItems.jsx'
 import Outfit from './components/Outfit.jsx'
 import QA from './components/QA.jsx'
 import Grid from '@material-ui/core/Grid';
-import Modal from '@material-ui/core/Modal';
 
 function App() {
 
@@ -50,7 +49,7 @@ function App() {
 
 		axios.get(`/relatedItems/${id}`)
 			.then(result => {
-				console.log('relatedItems result:', result.data)
+				console.log('relatedItems ids:', result.data)
 				relatedItemsId = result.data;
 				// setState({ ...state, relatedItems: result.data, startingIndex: 0 })
 				for (var i = 0; i < result.data.length; i++) {
@@ -65,7 +64,7 @@ function App() {
 							var itemInfo = Object.assign(productData.data, styleData.data, reviewData.data, { aveRating: aveRating })
 							relatedItemsInfo.push(itemInfo)
 							if (relatedItemsInfo.length === relatedItemsId.length) {
-								console.log("relatedItemsInfo: ", relatedItemsInfo);
+								console.log("relatedItems data: ", relatedItemsInfo);
 								getItemData(id, (err, itemObj) => {
 									setState({
 										...state,
@@ -86,11 +85,11 @@ function App() {
 	}, []);
 
 	var updateOutfitItems = function (itemObj, isOutfitItem) {
-		console.log('isOutfitItem from index:', isOutfitItem)
-		console.log('itemObj from index :', itemObj)
+		// console.log('isOutfitItem from index:', isOutfitItem)
+		// console.log('itemObj from index :', itemObj)
 
 		let outfitArr = state.outfitItems;
-		console.log('outfitArr before:', outfitArr)
+		// console.log('outfitArr before:', outfitArr)
 		if (isOutfitItem) {
 			outfitArr.push(itemObj);
 		} else {
@@ -100,7 +99,7 @@ function App() {
 				}
 			}
 		}
-		console.log('outfitArr atfer:', outfitArr)
+		// console.log('outfitArr atfer:', outfitArr)
 		setState({ ...state, outfitItems: outfitArr });
 	}
 

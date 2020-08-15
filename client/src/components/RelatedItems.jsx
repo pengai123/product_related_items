@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Rating from '@material-ui/lab/Rating';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -49,9 +46,7 @@ const useStyles = makeStyles((theme) => ({
 		position: 'absolute',
 		width: 600,
 		backgroundColor: "white",
-		//border: '1px solid #000',
 		border: '1px solid',
-		//boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3),
 	},
 
@@ -73,7 +68,6 @@ function getModalStyle() {
 }
 
 function RelatedItems(props) {
-
 
 	const [modalStyle] = React.useState(getModalStyle);
 	const [open, setOpen] = React.useState(false);
@@ -222,9 +216,6 @@ function RelatedItems(props) {
 												<FormControlLabel onChange={updateOutfitItems.bind(null, item)}
 													control={<Checkbox icon={<StarBorderIcon />} checkedIcon={<StarIcon />} name="checkedH" />}
 												/>
-												// <IconButton aria-label="settings">
-												// 	<StarBorderIcon />
-												// </IconButton>
 											}
 										/>
 										{item.results[0].photos[0].url ? (
@@ -232,13 +223,11 @@ function RelatedItems(props) {
 												className={classes.media}
 												image={item.results[0].photos[0].url}
 												onClick={handleOpen.bind(null, item)}
-											//title={item.name}
 											/>
 										) : (<CardMedia
 											className={classes.media}
 											image={`https://i5.walmartimages.com/asr/e7288ae9-bc36-4614-9b7d-7e1ff2d706fa_1.3aef7bb9143e505cdc178dc561ba0d69.jpeg`}
 											onClick={handleOpen.bind(null, item)}
-										//title={item.name}
 										/>)}
 										<CardContent>
 											<Typography variant="caption" color="textSecondary" component="p">

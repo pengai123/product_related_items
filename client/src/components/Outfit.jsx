@@ -3,21 +3,14 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import StarIcon from '@material-ui/icons/Star';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Rating from '@material-ui/lab/Rating';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { lightGreen } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -57,10 +50,9 @@ export default function Outfit(props) {
 	// 	nextPageIcon: true
 	// }
 	const classes = useStyles();
-	//var showningItems = props.relatedItemsState.relatedItems.slice(props.relatedItemsState.startingIndex, props.relatedItemsState.startingIndex + 3)
 	var outfitItems = props.outfitItems;
 
-	var updateOutfitItems = function(itemObj, e){
+	var updateOutfitItems = function (itemObj, e) {
 
 		console.log('itemObj from Outfit:', itemObj)
 		props.updateOutfitItems(itemObj, false)
@@ -116,10 +108,13 @@ export default function Outfit(props) {
 								</ListItem>
 								// </Grid>
 							)
-						}) : 
-						(<Typography variant="body1"  color="secondary" component="p">
-							You haven't picked any item, go ahead to pick some to build your outfit...
-							</Typography>)}
+						}) :
+							(<Grid container justify="center" >
+								<Typography variant="subtitle2" color="secondary" component="p">
+									You have not picked any item, go ahead to pick some to build your outfit...
+								</Typography>
+							</Grid>)
+						}
 					</List>
 				</Grid>
 			</Grid>

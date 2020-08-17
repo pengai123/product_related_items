@@ -34,7 +34,7 @@ function App() {
 		var getProduct = axios.get(`/products/${id}`)
 		var getStyle = axios.get(`/styles/${id}`)
 		var getReview = axios.get(`/reviews/${id}`)
-		//[productData, styleData, reviewData]
+
 		Promise.all([getProduct, getStyle, getReview])
 			.then(([productData, styleData, reviewData]) => {
 

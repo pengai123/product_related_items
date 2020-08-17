@@ -6,7 +6,6 @@ import RelatedItems from './components/RelatedItems.jsx'
 import Outfit from './components/Outfit.jsx'
 import QA from './components/QA.jsx'
 import Grid from '@material-ui/core/Grid';
-//import localStorage from 'local-storage';
 
 function App() {
 

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:server": "nodemon server.js",
-    "start:react": "webpack -d --watch"
+    "start:client": "webpack -d --watch"
   },
   "author": "PA",
   "license": "ISC",

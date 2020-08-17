@@ -15,6 +15,7 @@ function App() {
 		currentItem: { features: [{ feature: 'feature', value: 'value' }] }
 	})
 
+
 	function reatingCaculator(ratingObj) {
 		var ratingScore = 0;
 		var ratingNumber = 0

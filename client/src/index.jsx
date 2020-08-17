@@ -6,13 +6,14 @@ import RelatedItems from './components/RelatedItems.jsx'
 import Outfit from './components/Outfit.jsx'
 import QA from './components/QA.jsx'
 import Grid from '@material-ui/core/Grid';
+//import localStorage from 'local-storage';
 
 function App() {
 
 	const [state, setState] = useState({
 		relatedItems: [],
-		outfitItems: [],
-		currentItem: {features: [{feature: 'feature', value: 'value'}]}
+		outfitItems: JSON.parse(localStorage.getItem("outfit-items")) || [],
+		currentItem: { features: [{ feature: 'feature', value: 'value' }] }
 	})
 
 	function reatingCaculator(ratingObj) {
@@ -46,6 +47,9 @@ function App() {
 	function setRelatedItemsData(id) {
 		var relatedItemsInfo = [];
 		var relatedItemsId = [];
+		var outfitItemsFromLocalStorage = JSON.parse(localStorage.getItem("outfit-items"));
+		console.log('***Outfit Items From Local Storage***:', outfitItemsFromLocalStorage)
+
 
 		axios.get(`/relatedItems/${id}`)
 			.then(result => {
@@ -78,10 +82,16 @@ function App() {
 			})
 	}
 
+
+	useEffect(() => {
+		localStorage.setItem('outfit-items', JSON.stringify(state.outfitItems))
+
+	}, [state])
+
+
 	useEffect(() => {
 
 		setRelatedItemsData(7);
-
 	}, []);
 
 	var updateOutfitItems = function (itemObj, isOutfitItem) {
@@ -89,12 +99,20 @@ function App() {
 		// console.log('itemObj from index :', itemObj)
 
 		let outfitArr = state.outfitItems;
+		let itemFlag = false;
 		// console.log('outfitArr before:', outfitArr)
 		if (isOutfitItem) {
-			outfitArr.push(itemObj);
+			for (let i = 0; i < outfitArr.length; i++) {
+				if (outfitArr[i].id === itemObj.id) {
+					itemFlag = true;
+				}
+			}
+			if (!itemFlag) {
+				outfitArr.push(itemObj);
+			}
 		} else {
-			for (var i = 0; i < outfitArr.length; i++) {
-				if (JSON.stringify(outfitArr[i]) === JSON.stringify(itemObj)) {
+			for (let i = 0; i < outfitArr.length; i++) {
+				if (outfitArr[i].id === itemObj.id) {
 					outfitArr.splice(i, 1);
 				}
 			}
@@ -113,7 +131,7 @@ function App() {
 				<Grid item xs={10}>
 					<RelatedItems
 						// changeStartingIndex={changeStartingIndex}
-						currentItem={state.currentItem} 
+						currentItem={state.currentItem}
 						relatedItems={state.relatedItems}
 						updateOutfitItems={updateOutfitItems}
 					/>

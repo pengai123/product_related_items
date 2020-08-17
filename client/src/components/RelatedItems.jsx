@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	fullHeightCard: {
 		height: "100%",
+		// width: "200"
 	},
 	paper: {
 		position: 'absolute',
@@ -209,7 +210,7 @@ function RelatedItems(props) {
 					<List style={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
 						{relatedItems.map((item, idx) => {
 							return (
-								<ListItem key={idx} >
+								<ListItem style={{width: 300}} key={idx} >
 									<Card className={classes.fullHeightCard} >
 										<CardHeader
 											action={

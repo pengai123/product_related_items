@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require("express");
 const app = express();
 const port = 4000;
@@ -25,7 +26,7 @@ insertProducts();
 
 
 app.get("/relatedItems/:id", (req, res) => {
-	 //console.log('product id:', req.params.id)
+	//console.log('product id:', req.params.id)
 
 	axios.get(`http://52.26.193.201:3000/products/${req.params.id}/related`)
 		.then(result => {

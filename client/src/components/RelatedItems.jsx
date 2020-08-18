@@ -14,6 +14,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Modal from '@material-ui/core/Modal';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -34,10 +36,6 @@ const useStyles = makeStyles((theme) => ({
 	expandOpen: {
 		transform: 'rotate(180deg)',
 	},
-	fullHeightCard: {
-		height: "100%",
-		// width: "200"
-	},
 	paper: {
 		position: 'absolute',
 		width: 600,
@@ -45,6 +43,19 @@ const useStyles = makeStyles((theme) => ({
 		border: '1px solid',
 		padding: theme.spacing(2, 4, 3),
 	},
+	gridListRoot: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		justifyContent: 'space-around',
+		overflow: 'hidden',
+		//backgroundColor: theme.palette.background.paper,
+	},
+	gridList: {
+		flexWrap: 'nowrap',
+		// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+		transform: 'translateZ(0)',
+		width: 180
+	}
 
 }));
 
@@ -205,8 +216,8 @@ function RelatedItems(props) {
 					<List style={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
 						{relatedItems.map((item, idx) => {
 							return (
-								<ListItem style={{width: 300}} key={idx} >
-									<Card className={classes.fullHeightCard} >
+								<ListItem style={{ width: 300 }} key={idx} >
+									<Card style={{ height: '100%' }}>
 										<CardHeader
 											action={
 												<FormControlLabel onChange={updateOutfitItems.bind(null, item)}
@@ -214,17 +225,26 @@ function RelatedItems(props) {
 												/>
 											}
 										/>
-										{item.results[0].photos[0].url ? (
-											<CardMedia
-												className={classes.media}
-												image={item.results[0].photos[0].url}
-												onClick={handleOpen.bind(null, item)}
-											/>
-										) : (<CardMedia
-											className={classes.media}
-											image={`https://i5.walmartimages.com/asr/e7288ae9-bc36-4614-9b7d-7e1ff2d706fa_1.3aef7bb9143e505cdc178dc561ba0d69.jpeg`}
-											onClick={handleOpen.bind(null, item)}
-										/>)}
+										<CardMedia className={classes.gridListRoot} onClick={handleOpen.bind(null, item)} >
+											<GridList className={classes.gridList} cols={1}>
+												{item.results.map((style, idx) => {
+													if (style.photos[0].url) {
+														return (
+															<GridListTile key={idx}>
+																<img src={style.photos[0].url} />
+															</GridListTile>
+														)
+													} else {
+														return (
+															<GridListTile key={idx}>
+																<img src={`https://i5.walmartimages.com/asr/e7288ae9-bc36-4614-9b7d-7e1ff2d706fa_1.3aef7bb9143e505cdc178dc561ba0d69.jpeg`} />
+															</GridListTile>
+														)
+													}
+												})}
+											</GridList>
+										</CardMedia>
+
 										<CardContent>
 											<Typography variant="caption" color="textSecondary" component="p">
 												{item.category}

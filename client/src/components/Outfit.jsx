@@ -11,6 +11,8 @@ import Rating from '@material-ui/lab/Rating';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -36,19 +38,23 @@ const useStyles = makeStyles((theme) => ({
 	expandOpen: {
 		transform: 'rotate(180deg)',
 	},
-	fullHeightCard: {
-		height: "100%",
-		width: "100%"
+	gridListRoot: {
+		display: 'flex',
+		flexWrap: 'wrap',
+		justifyContent: 'space-around',
+		overflow: 'hidden',
+		//backgroundColor: theme.palette.background.paper,
+	},
+	gridList: {
+		flexWrap: 'nowrap',
+		// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+		transform: 'translateZ(0)',
+		width: 180
 	}
 }));
 
 export default function Outfit(props) {
-	// {
-	// 	relatedItems: [],
-	// 	startingIndex: 0,
-	// 	prePageIcon: false,
-	// 	nextPageIcon: true
-	// }
+
 	const classes = useStyles();
 	var outfitItems = props.outfitItems;
 
@@ -71,8 +77,7 @@ export default function Outfit(props) {
 							return (
 								// <Grid item  xs={3}>
 								<ListItem key={idx}>
-									{/* <Card className={classes.fullHeightCard} > */}
-									<Card style={{ height: "100%", width: "100%" }} >
+									<Card style={{ height: "100%" }} >
 										<CardHeader
 											action={
 												<IconButton onClick={updateOutfitItems.bind(null, item)} aria-label="settings">
@@ -80,17 +85,25 @@ export default function Outfit(props) {
 												</IconButton>
 											}
 										/>
-										{item.results[0].photos[0].url ? (
-											<CardMedia
-												className={classes.media}
-												image={item.results[0].photos[0].url}
-											//title={item.name}
-											/>
-										) : (<CardMedia
-											className={classes.media}
-											image={`https://i5.walmartimages.com/asr/e7288ae9-bc36-4614-9b7d-7e1ff2d706fa_1.3aef7bb9143e505cdc178dc561ba0d69.jpeg`}
-										//title={item.name}
-										/>)}
+										<CardMedia className={classes.gridListRoot} >
+											<GridList className={classes.gridList} cols={1}>
+												{item.results.map((style, idx) => {
+													if (style.photos[0].url) {
+														return (
+															<GridListTile key={idx}>
+																<img src={style.photos[0].url} />
+															</GridListTile>
+														)
+													} else {
+														return (
+															<GridListTile key={idx}>
+																<img src={`https://i5.walmartimages.com/asr/e7288ae9-bc36-4614-9b7d-7e1ff2d706fa_1.3aef7bb9143e505cdc178dc561ba0d69.jpeg`} />
+															</GridListTile>
+														)
+													}
+												})}
+											</GridList>
+										</CardMedia>
 										<CardContent>
 											<Typography variant="caption" color="textSecondary" component="p">
 												{item.category}
@@ -104,9 +117,7 @@ export default function Outfit(props) {
 											<Rating name="half-rating-read" value={item.aveRating} precision={0.5} size="small" readOnly />
 										</CardContent>
 									</Card>
-									{/* </Grid> */}
 								</ListItem>
-								// </Grid>
 							)
 						}) :
 							(<Grid container justify="center" >

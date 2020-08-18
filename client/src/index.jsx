@@ -55,12 +55,12 @@ function App() {
 			.then(result => {
 				console.log('relatedItems ids:', result.data)
 				relatedItemsId = result.data;
-				// setState({ ...state, relatedItems: result.data, startingIndex: 0 })
+			
 				for (var i = 0; i < result.data.length; i++) {
 					var getProduct = axios.get(`/products/${result.data[i]}`)
 					var getStyle = axios.get(`/styles/${result.data[i]}`)
 					var getReview = axios.get(`/reviews/${result.data[i]}`)
-					//[productData, styleData, reviewData]
+				
 					Promise.all([getProduct, getStyle, getReview])
 						.then(([productData, styleData, reviewData]) => {
 

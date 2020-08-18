@@ -18,11 +18,6 @@ import Modal from '@material-ui/core/Modal';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		maxWidth: 345,
-		// display: 'flex',
-		// flexDirection: 'column',
-		// '& > * + *': {
-		//   marginTop: theme.spacing(1),
-		// }
 	},
 	media: {
 		//height: 150

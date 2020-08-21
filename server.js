@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 const express = require("express");
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 const bp = require("body-parser");
 const axios = require("axios");
 const Product = require("./database/products.js")
@@ -18,6 +18,7 @@ const insertProducts = function () {
 				.then(() => console.log('products infomation saved into database!'))
 				.catch(() => console.log('products infomation already in the database!'));
 		})
+		.catch(err => console.log('err:', err))
 };
 
 //Product.deleteMany().then(() => console.log('database cleared'))

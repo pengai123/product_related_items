@@ -1,7 +1,13 @@
 /* eslint-disable no-undef */
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:/Greenfield', { useNewUrlParser: true, useUnifiedTopology: true }); //'test' is database name
-//, useCreateIndex: true 
+
+
+mongoose.connect('mongodb://localhost:/Greenfield', { useNewUrlParser: true, useUnifiedTopology: true })
+	.then(result => console.log('mongodb connected!'))
+	.catch(err => console.log('err:', err))
+
+
+
 const Product = mongoose.model('product', {
 	id: { type: Number, unique: true },
 	name: String,

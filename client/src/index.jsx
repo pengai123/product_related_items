@@ -126,8 +126,8 @@ function App() {
 				<SearchAppBar />
 			</Grid>
 			<Grid item container>
-				<Grid item xs={1} />
-				<Grid item xs={10}>
+				<Grid item sm={1} xs={0} />
+				<Grid item sm={10} xs={12} >
 					<RelatedItems
 						// changeStartingIndex={changeStartingIndex}
 						currentItem={state.currentItem}
@@ -135,18 +135,18 @@ function App() {
 						updateOutfitItems={updateOutfitItems}
 					/>
 				</Grid>
-				<Grid item xs={1} />
+				<Grid item sm={1} xs={0} />
 			</Grid>
 			<br /><br />
 			<Grid item container>
-				<Grid item xs={1} />
-				<Grid item xs={10}>
+				<Grid item sm={1} xs={0} />
+				<Grid item sm={10} xs={12} >
 					<Outfit
 						outfitItems={state.outfitItems}
 						updateOutfitItems={updateOutfitItems}
 					/>
 				</Grid>
-				<Grid item xs={1} />
+				<Grid item sm={1} xs={0} />
 			</Grid>
 		</Grid>
 	)

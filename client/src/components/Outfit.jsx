@@ -17,11 +17,6 @@ import GridListTile from '@material-ui/core/GridListTile';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		maxWidth: 345,
-		// display: 'flex',
-		// flexDirection: 'column',
-		// '& > * + *': {
-		//   marginTop: theme.spacing(1),
-		// }
 	},
 	media: {
 		//height: 150
@@ -49,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 		flexWrap: 'nowrap',
 		// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 		transform: 'translateZ(0)',
-		width: 180
+		width: 190
 	}
 }));
 

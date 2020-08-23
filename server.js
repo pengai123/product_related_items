@@ -24,8 +24,6 @@ const insertProducts = function () {
 //Product.deleteMany().then(() => console.log('database cleared'))
 insertProducts();
 
-
-
 app.get("/relatedItems/:id", (req, res) => {
 	//console.log('product id:', req.params.id)
 

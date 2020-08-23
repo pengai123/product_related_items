@@ -4,7 +4,6 @@ import axios from 'axios';
 import SearchAppBar from './components/SearchAppBar.jsx'
 import RelatedItems from './components/RelatedItems.jsx'
 import Outfit from './components/Outfit.jsx'
-import QA from './components/QA.jsx'
 import Grid from '@material-ui/core/Grid';
 
 function App() {
@@ -146,14 +145,6 @@ function App() {
 						outfitItems={state.outfitItems}
 						updateOutfitItems={updateOutfitItems}
 					/>
-				</Grid>
-				<Grid item xs={1} />
-			</Grid>
-			<br /><br />
-			<Grid item container>
-				<Grid item xs={1} />
-				<Grid item xs={10}>
-					<QA />
 				</Grid>
 				<Grid item xs={1} />
 			</Grid>

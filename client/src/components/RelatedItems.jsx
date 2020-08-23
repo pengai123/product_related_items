@@ -44,20 +44,19 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2, 4, 3),
 	},
 	gridListRoot: {
-		display: 'flex',
-		flexWrap: 'wrap',
-		justifyContent: 'space-around',
 		overflow: 'hidden',
-		//backgroundColor: theme.palette.background.paper,
 	},
 	gridList: {
+		display:"flex",
+		flexDirection: "row",
 		flexWrap: 'nowrap',
 		// Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
 		transform: 'translateZ(0)',
-		width: 180
+		width: 190
 	}
 
 }));
+
 
 function rand() {
 	return Math.round(Math.random() * 20) - 10;
@@ -198,6 +197,7 @@ function RelatedItems(props) {
 		</Grid>
 	)
 
+
 	var updateOutfitItems = function (itemObj, e) {
 		var checked = e.target.checked;
 		console.log('checked from relatedItems:', checked)
@@ -213,6 +213,7 @@ function RelatedItems(props) {
 			</Typography>
 			<Grid container>
 				<Grid item style={{ overflow: 'auto' }} >
+				{/* <List style={{ display: 'flex', flexDirection: 'row', flexWrap:'nowrap', padding: 0 }}> */}
 					<List style={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
 						{relatedItems.map((item, idx) => {
 							return (
@@ -225,7 +226,10 @@ function RelatedItems(props) {
 												/>
 											}
 										/>
-										<CardMedia className={classes.gridListRoot} onClick={handleOpen.bind(null, item)} >
+										<CardMedia
+											className={classes.gridListRoot}
+											onClick={handleOpen.bind(null, item)}
+											>
 											<GridList className={classes.gridList} cols={1}>
 												{item.results.map((style, idx) => {
 													if (style.photos[0].url) {

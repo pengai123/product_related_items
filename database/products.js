@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:/Greenfield', { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(result => console.log('mongodb connected!'))
-	.catch(err => console.log('err:', err))
+	.catch(err => console.log('Err: failed connecting to mongodb!', err))
 
 
 
